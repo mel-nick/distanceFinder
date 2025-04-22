@@ -1,18 +1,36 @@
-import { StyleSheet, Text } from 'react-native';
-
-const styles = StyleSheet.create({
-  text: {
-    color: '#fff',
-    fontSize: 18,
-    marginVertical: 20,
-  },
-});
+import { Text, View } from 'react-native';
+import { formulaStyles as styles } from './formulaStyles';
 
 const Formula = ({ buttonValue, mrad, moa }) => {
-  if (buttonValue === mrad)
-    return <Text style={styles.text}>Range (m) = Size(m) * 1000 / MRAD</Text>;
-  if (buttonValue === moa)
-    return <Text style={styles.text}>Range (m) = Size(m) * 3438 / MOA</Text>;
-  return null;
+  let numerator = '';
+  let denominator = '';
+
+  if (buttonValue === mrad) {
+    numerator = 'Size(m) * 1000';
+    denominator = 'MRAD';
+  } else if (buttonValue === moa) {
+    numerator = 'Size(m) * 3438';
+    denominator = 'MOA';
+  } else {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.text}>Select MRAD or MOA</Text>
+      </View>
+    );
+  }
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.formulaRow}>
+        <Text style={styles.baseText}>Distance(m) = </Text>
+        <View style={styles.fractionContainer}>
+          <Text style={styles.numeratorText}>{numerator}</Text>
+          <View style={styles.fractionLine} />
+          <Text style={styles.denominatorText}>{denominator}</Text>
+        </View>
+      </View>
+    </View>
+  );
 };
+
 export default Formula;
