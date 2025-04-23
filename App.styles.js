@@ -49,4 +49,5 @@ export const appStyles = StyleSheet.create({
     color: COLORS.white,
     fontWeight: 'bold',
   },
+  // Button styles have been moved to constants/buttonStyles.js
 });

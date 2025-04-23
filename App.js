@@ -1,6 +1,4 @@
 import {
-  TouchableOpacity,
-  Text,
   View,
   SafeAreaView,
   KeyboardAvoidingView,
@@ -11,8 +9,10 @@ import { useState } from 'react';
 import RangeFinder from './componnets/layout/rangeFinder';
 import { StatusBar } from 'expo-status-bar';
 import TargetSize from './componnets/layout/targetSize';
-import { appStyles as styles } from './App.styles';
+import { appStyles } from './App.styles';
+import ToggleButtonGroup from './componnets/common/ToggleButtonGroup';
 import { COLORS } from './constants/theme';
+import { buttonStyles } from './constants/buttonStyles';
 
 const MradDistanceFinder = () => {
   const [unitType, setUnitType] = useState('MRAD');
@@ -22,7 +22,7 @@ const MradDistanceFinder = () => {
   const calculationModes = ['Range', 'Target Size'];
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={appStyles.safeArea}>
       <StatusBar style='light' backgroundColor={COLORS.background} />
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -30,32 +30,16 @@ const MradDistanceFinder = () => {
         keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 0}
       >
         <ScrollView
-          contentContainerStyle={styles.scrollViewContent}
+          contentContainerStyle={appStyles.scrollViewContent}
           keyboardShouldPersistTaps='handled'
         >
-          <View style={styles.container}>
-            <View style={styles.modeSelectionContainer}>
-              {calculationModes.map((mode) => (
-                <TouchableOpacity
-                  key={mode}
-                  onPress={() => setCalculationMode(mode)}
-                  style={[
-                    styles.modeToggleButton,
-                    calculationMode === mode && styles.selectedModeToggleButton,
-                  ]}
-                >
-                  <Text
-                    style={[
-                      styles.modeToggleButtonLabel,
-                      calculationMode === mode &&
-                        styles.selectedModeToggleButtonLabel,
-                    ]}
-                  >
-                    {mode}
-                  </Text>
-                </TouchableOpacity>
-              ))}
-            </View>
+          <View style={appStyles.container}>
+            <ToggleButtonGroup
+              options={calculationModes}
+              selectedOption={calculationMode}
+              onSelect={setCalculationMode}
+              containerStyle={buttonStyles.modeSelectionContainer}
+            />
 
             {calculationMode === calculationModes[0] ? (
               <RangeFinder
@@ -76,4 +60,5 @@ const MradDistanceFinder = () => {
     </SafeAreaView>
   );
 };
+
 export default MradDistanceFinder;

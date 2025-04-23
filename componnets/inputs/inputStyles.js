@@ -42,31 +42,4 @@ export const inputStyles = StyleSheet.create({
     color: COLORS.textPrimary,
     marginBottom: SIZES.padding * 1.5,
   },
-  button: {
-    height: SIZES.buttonHeight,
-    paddingVertical: SIZES.buttonPaddingVertical,
-    paddingHorizontal: SIZES.buttonPaddingHorizontal,
-    borderRadius: SIZES.radius,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-    marginBottom: SIZES.padding,
-  },
-  primaryButton: {
-    backgroundColor: COLORS.accent,
-  },
-  secondaryButton: {
-    backgroundColor: 'transparent',
-    borderColor: COLORS.accent,
-    borderWidth: 1,
-  },
-  buttonLabel: {
-    ...FONTS.body3,
-  },
-  primaryButtonLabel: {
-    color: COLORS.white,
-  },
-  secondaryButtonLabel: {
-    color: COLORS.accent,
-  },
 });

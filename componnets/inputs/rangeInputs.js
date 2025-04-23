@@ -1,6 +1,8 @@
-import { TouchableOpacity, Text, TextInput, View } from 'react-native';
+import { Text, TextInput, View } from 'react-native';
 import React, { useState } from 'react';
-import { inputStyles as styles } from './inputStyles';
+import { inputStyles } from './inputStyles';
+import ActionButton from '../common/ActionButton';
+import ClearButton from '../common/ClearButton';
 import { COLORS } from '../../constants/theme';
 
 const Inputs = ({ buttonValue, mrad, moa }) => {
@@ -33,10 +35,10 @@ const Inputs = ({ buttonValue, mrad, moa }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.label}>Target Size (m)</Text>
+    <View style={inputStyles.container}>
+      <Text style={inputStyles.label}>Target Size (m)</Text>
       <TextInput
-        style={styles.input}
+        style={inputStyles.input}
         editable
         inputMode='numeric'
         placeholder='Enter target size in meters'
@@ -44,9 +46,9 @@ const Inputs = ({ buttonValue, mrad, moa }) => {
         value={targetSize}
         onChangeText={(value) => setTargetSize(value)}
       />
-      <Text style={styles.label}>{buttonValue} Reading</Text>
+      <Text style={inputStyles.label}>{buttonValue} Reading</Text>
       <TextInput
-        style={styles.input}
+        style={inputStyles.input}
         editable
         inputMode='numeric'
         placeholder={`Enter ${buttonValue} measurement`}
@@ -54,28 +56,17 @@ const Inputs = ({ buttonValue, mrad, moa }) => {
         value={reticleSize}
         onChangeText={(value) => setReticleSize(value)}
       />
-      <TouchableOpacity
+      <ActionButton
         onPress={() => getResult(targetSize, reticleSize)}
-        style={[styles.button, styles.primaryButton]}
-      >
-        <Text style={[styles.buttonLabel, styles.primaryButtonLabel]}>
-          Calculate Range
-        </Text>
-      </TouchableOpacity>
+        label='Calculate Range'
+      />
 
       {result !== null && (
-        <View style={styles.resultContainer}>
-          <Text style={styles.resultHeader}>Distance to Target:</Text>
-          <Text style={styles.resultText}>{result} M</Text>
+        <View style={inputStyles.resultContainer}>
+          <Text style={inputStyles.resultHeader}>Distance to Target:</Text>
+          <Text style={inputStyles.resultText}>{result} M</Text>
 
-          <TouchableOpacity
-            onPress={clearValues}
-            style={[styles.button, styles.secondaryButton]}
-          >
-            <Text style={[styles.buttonLabel, styles.secondaryButtonLabel]}>
-              Clear
-            </Text>
-          </TouchableOpacity>
+          <ClearButton onPress={clearValues} />
         </View>
       )}
     </View>
