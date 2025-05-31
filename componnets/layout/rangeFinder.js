@@ -1,7 +1,7 @@
-import { View, TouchableOpacity, Text } from 'react-native';
+import { View } from 'react-native';
 import Formula from '../formula/rangeFormula';
 import Inputs from '../inputs/rangeInputs';
-import { rangeFinderStyles as styles } from './rangeFinderStyles';
+import ToggleButtonGroup from '../common/ToggleButtonGroup';
 
 const RangeFinder = ({ buttons, setButton, selectedButton }) => {
   const mrad = 'MRAD';
@@ -9,27 +9,11 @@ const RangeFinder = ({ buttons, setButton, selectedButton }) => {
 
   return (
     <>
-      <View style={styles.buttonContainer}>
-        {buttons.map((button) => (
-          <TouchableOpacity
-            key={button}
-            onPress={() => setButton(button)}
-            style={[
-              styles.toggleButton,
-              selectedButton === button && styles.selectedToggleButton,
-            ]}
-          >
-            <Text
-              style={[
-                styles.toggleButtonLabel,
-                selectedButton === button && styles.selectedToggleButtonLabel,
-              ]}
-            >
-              {button}
-            </Text>
-          </TouchableOpacity>
-        ))}
-      </View>
+      <ToggleButtonGroup
+        options={buttons}
+        selectedOption={selectedButton}
+        onSelect={setButton}
+      />
       <Formula buttonValue={selectedButton} mrad={mrad} moa={moa} />
       <Inputs buttonValue={selectedButton} mrad={mrad} moa={moa} />
     </>

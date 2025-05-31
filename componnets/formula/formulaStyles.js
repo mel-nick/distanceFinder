@@ -18,7 +18,7 @@ export const formulaStyles = StyleSheet.create({
   },
   baseText: {
     ...FONTS.monospace,
-    color: COLORS.textPrimary,
+    color: COLORS.accent,
     marginRight: SIZES.base / 2,
   },
   fractionContainer: {
@@ -27,18 +27,18 @@ export const formulaStyles = StyleSheet.create({
   },
   numeratorText: {
     ...FONTS.monospace,
-    color: COLORS.textPrimary,
+    color: COLORS.accent,
     paddingHorizontal: SIZES.paddingSmall,
   },
   fractionLine: {
     height: 1,
-    backgroundColor: COLORS.textPrimary,
+    backgroundColor: COLORS.accent,
     width: '100%',
     marginVertical: SIZES.base / 4,
   },
   denominatorText: {
     ...FONTS.monospace,
-    color: COLORS.textPrimary,
+    color: COLORS.accent,
     paddingHorizontal: SIZES.paddingSmall,
   },
 });
